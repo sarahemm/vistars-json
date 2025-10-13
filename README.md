@@ -16,7 +16,11 @@ experiment->config: Given as strings, not numbers/integers, may contain things l
 Luminosity dimensions are skipped.
 
 cryo->state: An array containing one array for each colour bar on the lhc2 page. Each element represents a cryomodule/cryostat.
+
 Possible values 0, 1, 2, 3; 0 = green, 1 = red, 2 = orange, 3 = blue
+
 Orange indicates a state between red and green, for example one which is close to recovering.
+
 Blue ? (only seen for CMS so far).
+
 FYI: The CMS solenoid and ATLAS toroid & solenoid may lose cryogenic conditions without affecting the beam.
