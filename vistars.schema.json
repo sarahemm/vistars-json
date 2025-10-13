@@ -1,0 +1,378 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lhcstatus2.ovh/lhcstatus2.schema.json",
+  "title": "LHC Status",
+  "description": "Status of the LHC from a subset of Vistars",
+  "type": "object",
+  "properties": {
+    "fill": {
+      "description": "Fill number",
+      "type": "integer",
+      "exclusiveMinimum": 0
+    },
+    "energy": {
+      "description": "Beam energy",
+      "type": "integer",
+      "unit": "GeV",
+      "minimum": 0
+    },
+    "ions": {
+      "description": "Ion (Pb-Pb) beams",
+      "type": "boolean",
+    },
+    "time": {
+      "description": "Update time for each of the 4 parsed pages",
+      "type": "object",
+      "properties": {
+        "page1": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cryo": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "lhc3": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "config": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "page1",
+        "cryo",
+        "lhc3",
+        "config"
+      ]
+    },
+    "comments": {
+      "description": "Page 1 Comments",
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "time"
+      ]
+    },
+    "flags": {
+      "description": "Page 1 BIS Status and SMP flags",
+      "type": "object",
+      "properties": {
+        "link_status": {
+          "description": "Link Status of Beam Permits",
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "global_beam_permit": {
+          "description": "Global Beam Permit",
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "setup_beam": {
+          "description": "Setup Beam",
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "beam_presence": {
+          "description": "Beam Presence",
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "moveable_devices": {
+          "description": "Moveable Devices Allowed In",
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        },
+        "stable_beams": {
+          "description": "Stable Beams",
+          "type": "array",
+          "items": {
+            "type": "boolean"
+          }
+        }
+      },
+      "required": [
+        "link_status",
+        "global_beam_permit",
+        "setup_beam",
+        "beam_presence",
+        "moveable_devices",
+        "stable_beams"
+      ]
+    },
+    "tsb": {
+      "description": "Stable beam time",
+      "type": "string",
+      "format": "duration"
+    },
+    "postmortem": {
+      "description": "Post Mortem Information",
+      "type": [
+        "null",
+        "object"
+      ],
+      "properties": {
+        "id": {
+          "description": "PM Event ID",
+          "type": "string",
+          "format": "date-time"
+        },
+        "category": {
+          "description": "PM Event category",
+          "type": "string"
+        },
+        "classification": {
+          "description": "PM Event classification",
+          "type": "string"
+        },
+        "analysis": {
+          "description": "PM BIS Analysis result",
+          "type": "string"
+        },
+        "comment": {
+          "description": "PM comment",
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      },
+      "required": [
+        "analysis",
+        "category",
+        "classification",
+        "comment",
+        "id"
+      ]
+    },
+    "intensity": {
+      "description": "Beam Intensity",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "accmode": {
+      "description": "Accelerator Mode",
+      "type": "string"
+    },
+    "beammode": {
+      "description": "Beam Mode",
+      "type": "string"
+    },
+    "fillscheme": {
+      "description": "Active Filling Scheme",
+      "type": "string"
+    },
+    "hypercycle": {
+      "description": "Active Hypercycle",
+      "type": "string"
+    },
+    "experiment": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "minitems": 4,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "operation": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "description": "Experiment Status"
+              },
+              "inst_lumi": {
+                "type": "number",
+                "description": "Instantaneous Lumi",
+                "unit": "μb^-1/s"
+              },
+              "bran_lumi": {
+                "type": "number",
+                "description": "BRAN Luminosity",
+                "unit": "μb^-1/s"
+              },
+              "fill_lumi": {
+                "description": "Fill Luminosity",
+                "type": "number",
+                "unit": "nb^-1"
+              },
+              "b1_bkgd": {
+                "type": "number"
+              },
+              "b2_bkgd": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "status",
+              "inst_lumi",
+              "bran_lumi",
+              "fill_lumi",
+              "b1_bkgd",
+              "b2_bkgd"
+            ]
+          },
+          "config": {
+            "type": "object",
+            "properties": {
+              "beta_star": {
+                "description": "Beta*",
+                "type": "string",
+                "unit": "m"
+              },
+              "cross_angle": {
+                "description": "Crossing Angle",
+                "type": "string",
+                "unit": "μrad"
+              },
+              "spectro_angle": {
+                "description": "Spectrometer Angle",
+                "type": [
+                  "null",
+                  "string"
+                ],
+                "unit": "μrad"
+              },
+              "separation": {
+                "description": "Beam Separation",
+                "type": "string",
+                "unit": "mm"
+              },
+              "coll_per_turn": {
+                "description": "Expected Collisions per turn",
+                "type": "string"
+              },
+              "delta_t": {
+                "description": "BPTX: deltaT of IP (B1-B2)",
+                "type": "string",
+                "unit": "ns"
+              }
+            },
+            "required": [
+              "beta_star",
+              "cross_angle",
+              "spectro_angle",
+              "separation",
+              "coll_per_turn",
+              "delta_t"
+            ]
+          }
+        },
+        "required": [
+          "config",
+          "name",
+          "operation"
+        ]
+      }
+    },
+    "velo": {
+      "description": "LHCb Vertex Locator",
+      "type": "object",
+      "properties": {
+        "position": {
+          "description": "VELO Position",
+          "type": "string"
+        },
+        "gap": {
+          "description": "VELO Gap",
+          "type": "number",
+          "unit": "mm"
+        },
+        "smog": {
+          "description": "SMOG Status",
+          "type": "string"
+        }
+      },
+      "required": [
+        "gap",
+        "position"
+      ]
+    },
+    "bcm": {
+      "description": "ATLAS BCM Status",
+      "type": "string"
+    },
+    "totem": {
+      "description": "TOTEM Status",
+      "type": "string"
+    },
+    "cryo": {
+      "type": "object",
+      "properties": {
+        "max_t": {
+          "description": "Max Arc temperature per sector",
+          "type": "array",
+          "items": {
+            "type": "number",
+            "unit": "K",
+            "minitems": 8
+          }
+        },
+        "lost_count": {
+          "type": "integer"
+        },
+        "state": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "required": [
+        "lost_count",
+        "max_t",
+        "state"
+      ]
+    },
+    "next": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "accmode",
+    "beammode",
+    "comments",
+    "cryo",
+    "energy",
+    "experiment",
+    "fill",
+    "fillscheme",
+    "flags",
+    "hypercycle",
+    "intensity",
+    "next",
+    "time",
+    "tsb",
+    "velo",
+    "bcm",
+    "totem"
+  ]
+}
