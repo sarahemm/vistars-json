@@ -3,12 +3,12 @@
 Outputs LHC vistars data as JSON, used in lhcstatus2 social media
 
 Status data is read from CERN's vistar pages:
-  - (Page1)[https://op-webtools.web.cern.ch/vistar/?usr=LHC1]
-  - (Configuration)[https://op-webtools.web.cern.ch/vistar/?usr=LHCCONFIG]
-  - (Operation)[https://op-webtools.web.cern.ch/vistar/?usr=LHC3]
-  - (Cryogenics)[https://op-webtools.web.cern.ch/vistar/?usr=LHC2]
+  - [Page1](https://op-webtools.web.cern.ch/vistar/?usr=LHC1)
+  - [Configuration](https://op-webtools.web.cern.ch/vistar/?usr=LHCCONFIG)
+  - [Operation](https://op-webtools.web.cern.ch/vistar/?usr=LHC3)
+  - [Cryogenics](https://op-webtools.web.cern.ch/vistar/?usr=LHC2)
 
-The unit property (in schema) follows (https://dataprotocols.org/units/)[https://web.archive.org/web/20221224145746/https://dataprotocols.org/units/]
+The unit property (in schema) follows [https://dataprotocols.org/units/](https://web.archive.org/web/20221224145746/https://dataprotocols.org/units/)
 
 experiment->operation: **Floating point data may contain NaN**. This could break certain JSON parsers.
 
