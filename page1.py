@@ -203,7 +203,9 @@ class Page1(Vistars):
         hrs: int
         mins: int
         secs: int
-        tsb_str = ocr(self.image.crop(box))
+        # during the 2025 ion season t(SB) gained a blue background
+        # we convert to 1-bit to eliminate this and make the OCR work
+        tsb_str = ocr(self.image.convert(mode="1", dither=Image.Dither.NONE).crop(box))
         if len(tsb_str) == 8 and tsb_str.isascii():
             try:
                 hrs = int(tsb_str[0:2])
