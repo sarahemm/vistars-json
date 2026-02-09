@@ -43,7 +43,7 @@ class Encoder(json.JSONEncoder):
         elif isinstance(o, Velo):
             return {
                     "position": o.pos,
-                    "gap": None if o.gap.is_nan() else o.gap,
+                    "gap": o.gap,
                     "smog": o.smog,
             }
         else:
