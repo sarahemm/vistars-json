@@ -34,12 +34,6 @@ class Velo:
 
     def load(self, image: Image.Image) -> None:
         """Get LHCb VELO Position"""
-        if(image.getpixel((144, 312)) == Color.BLUE):
-            # VELO/SMOG is not in service, no data is available about it beyond that
-            self.pos = "N/A"
-            self.smog = "N/A"
-            return
-
         box: tuple[int, int, int, int] = (219, 318, 307, 330)
         gap_str: str
         gap_str = ocr(image.crop(box))
